@@ -1,0 +1,15 @@
+<h1>
+  Teste na rota /hello
+</h1>
+<h1>
+  <%= String.reverse(@name) %>
+</h1>
+<%= #  #alias PfuWeb.Router.Helpers, as: Routes
+  nome_inverso = String.reverse @name
+  "INVERTER"
+    |> Phoenix.HTML.Link.link(to: Routes.hello_path(@conn, :world, nome_inverso))
+%>
+<h1>: </h1>
+<%=
+  "HOME" |> Phoenix.HTML.Link.link(to: PfuWeb.Router.Helpers.page_path(@conn, :index))
+ %>

@@ -1,0 +1,17 @@
+<h1>Pessoa(<%= String.upcase(@pessoa.name) %>)</h1>        
+<div class="phx-hero">
+    <table class="table">
+        <tr style="background-color: lightgray">
+            <td>ID</td>
+            <td>First Name</td>
+            <td>username</td>
+            <td>password</td>
+        </tr>
+        <tr style="background-color: lightblue">
+            <td><%= @pessoa.id %></td>
+            <td><%= first_name(@pessoa) %></td>
+            <td><%= @pessoa.username %></td>
+            <td><%= @pessoa.password %></td>
+        </tr>
+    </table>
+</div>

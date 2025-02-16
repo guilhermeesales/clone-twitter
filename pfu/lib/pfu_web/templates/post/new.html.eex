@@ -1,0 +1,4 @@
+<%= Routes.post_path(@conn, :new) %>
+<h1>Nova postagem</h1>
+
+<%= render "form.html", Map.put(@conn.assigns, :action, Routes.post_path(@conn, :create)) %>
