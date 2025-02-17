@@ -19,6 +19,7 @@
               <a href="/sessions/new"><i class="fa fa-key"> Enter</i></a> |
               <i class="fa fa-registered"> <%= link "Register", to: Routes.user_path(@conn, :new) %></i> |
             <% else %>
+              <a href="/connection"><i class="fa fa-users">  Minhas conexões</i></a> |
               <i class="fa fa-registered"> <%= link "Fazer postagem", to: Routes.post_path(@conn, :new) %></i> |
               <a href="/posts/my-post"><i class="fa fa-id-card"> <%= @current_user.username %></i></a> |
               <i class="fa fa-power-off"> <%= link "Exit", to: Routes.session_path(@conn, :delete, @current_user), method: "delete" %></i> |

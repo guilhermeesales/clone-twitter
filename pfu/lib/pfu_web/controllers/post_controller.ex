@@ -1,19 +1,28 @@
 defmodule PfuWeb.PostController do
   use PfuWeb, :controller
   import Ecto.Query
+  alias Pfu.Connections
   alias Pfu.Repo
   alias Pfu.Post
+  
 
   plug :authenticate_user when action in [:index, :show, :new, :create, :edit, :update, :delete]
 
   def index(conn, _params) do
-    posts =
+    current_user = conn.assigns[:current_user]  
+
+    posts = 
       from(p in Post, order_by: [desc: p.likes])
       |> Repo.all()
       |> Repo.preload(:user)
 
-    IO.inspect(posts, label: "Posts ordenados por likes")
-    render(conn, "index.html", posts: posts)
+    posts_with_connections = Enum.map(posts, fn post ->
+      connection = Repo.get_by(Connections, id_user: current_user.id, id_connected_user: post.user_id)
+
+      Map.put(post, :is_connected, connection != nil)
+    end)
+
+    render(conn, "index.html", posts: posts_with_connections)
   end
 
 
@@ -121,5 +130,4 @@ defmodule PfuWeb.PostController do
     IO.inspect(my_posts, label: "Posts do usuário logado")
     render(conn, "profile.html", posts: my_posts)
   end
-
 end
