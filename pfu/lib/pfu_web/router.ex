@@ -22,8 +22,9 @@ defmodule PfuWeb.Router do
     get "/hello/:name", HelloController, :world
     get "/pessoas", PessoaController, :index
     get "/pessoas/:id", PessoaController, :show
-    get "/posts/my-post/:id", PostController, :profile
+    get "/posts/my-post", PostController, :profile
     post "/posts/:id/like", PostController, :like
+    get "/posts/delete/:id", PostController, :delete
     ########## Com banco #######################
     #get "/users", UserController, :index
     #get "/users/:id", UserController, :show
