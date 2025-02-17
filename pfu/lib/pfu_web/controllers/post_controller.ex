@@ -60,6 +60,21 @@ defmodule PfuWeb.PostController do
     end
   end
 
+  def reply(conn, %{"id" => id}) do
+    post = Repo.get!(Post, id)
+    changeset = Ecto.Changeset.change(post, replies: post.replies + 1)
+
+    case Repo.update(changeset) do
+      {:ok, post} ->
+        # Transmite para o canal "posts" o evento "post_replied"
+        PfuWeb.Endpoint.broadcast("posts", "post_replied", %{post_id: post.id, replies: post.replies})
+        json(conn, %{lreplies: post.replies})
+      {:error, _changeset} ->
+        conn
+        |> put_status(:unprocessable_entity)
+        |> json(%{error: "Não foi possível curtir o post."})
+    end
+  end
 
   def edit(conn, %{"id" => id}) do
     post = Repo.get(Post, id)

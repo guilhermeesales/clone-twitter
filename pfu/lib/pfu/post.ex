@@ -14,8 +14,7 @@ defmodule Pfu.Post do
   @doc false
   def changeset(post, attrs) do
     post
-    |> cast(attrs, [:content, :user_id, :likes])
-    |> cast(attrs, [:content, :user_id, :replies])
+    |> cast(attrs, [:content, :user_id, :likes, :replies])
     |> validate_required([:content, :user_id])
     |> validate_length(:content, max: 5000)
   end
