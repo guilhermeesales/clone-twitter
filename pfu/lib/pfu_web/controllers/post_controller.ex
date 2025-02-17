@@ -82,22 +82,25 @@ defmodule PfuWeb.PostController do
   end
 
   def delete(conn, %{"id" => id}) do
+    current_user = conn.assigns.current_user
     case Repo.get(Post, id) do
       nil ->
         conn
         |> put_flash(:error, "Post não encontrado.")
-        |> redirect(to: Routes.post_path(conn, :index))
+        |> redirect(to: Routes.post_path(conn, :profile))
       post ->
         Repo.delete(post)
         conn
         |> put_flash(:info, "Post removido com sucesso!")
-        |> redirect(to: Routes.post_path(conn, :index))
+        |> redirect(to: Routes.post_path(conn, :profile))
     end
   end
 
-  def profile(conn, %{"id" => id}) do
+  def profile(conn, _params) do
+    current_user = conn.assigns.current_user
+
     my_posts =
-      from(p in Post, where: p.user_id == ^id, preload: [:user])
+      from(p in Post, where: p.user_id == ^current_user.id, preload: [:user])
       |> Repo.all()
 
     IO.inspect(my_posts, label: "Posts do usuário logado")

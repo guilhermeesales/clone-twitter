@@ -8,6 +8,17 @@
       <span id="post-likes-<%= post.id %>"><%= post.likes %> Likes</span>
       <i class="fa fa-heart" aria-hidden="true"></i>
     </p>
-    
+    <!-- Botão de exclusão -->
+    <button onclick="confirmDelete(<%= post.id %>); return false;">Excluir</button>
+  </div>
 <% end %>
 
+<script>
+  function confirmDelete(postId) {
+    // Perguntar se o usuário tem certeza
+    if (confirm("Você tem certeza que deseja excluir este post?")) {
+      // Redirecionar para a rota de exclusão com o id do post
+      window.location.href = "/posts/delete/" + postId;
+    }
+  }
+</script>
