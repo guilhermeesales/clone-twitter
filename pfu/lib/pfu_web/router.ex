@@ -39,7 +39,7 @@ defmodule PfuWeb.Router do
       post "/like", PostController, :like, as: :like
       post "/reply", PostController, :reply, as: :reply
     end
-    resources "/connections", ConnectionController, only: [:index, :show, :new, :create, :edit, :update, :delete]
+    resources "/connection", ConnectionController, only: [:index, :show, :new, :create, :edit, :update, :delete]
 
 
 
