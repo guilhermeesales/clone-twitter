@@ -1,0 +1,14 @@
+<h1>Minhas Conexões</h1>
+
+<%= if length(@users) > 0 do %>
+  <ul>
+    <%= for user <- @users do %>
+      <li>
+        <strong><%= user.name %></strong>
+        <br />
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>Você não tem conexões ainda.</p>
+<% end %>

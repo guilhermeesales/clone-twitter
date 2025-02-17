@@ -25,6 +25,8 @@ defmodule PfuWeb.Router do
     get "/posts/my-post", PostController, :profile
     post "/posts/:id/like", PostController, :like
     post "/posts/:id/reply", PostController, :reply
+    get "/:id/conectar", ConnectionController, :conectar
+    get "/:id/desconectar", ConnectionController, :desconectar
     get "/posts/delete/:id", PostController, :delete
     ########## Com banco #######################
     #get "/users", UserController, :index
@@ -37,6 +39,8 @@ defmodule PfuWeb.Router do
       post "/like", PostController, :like, as: :like
       post "/reply", PostController, :reply, as: :reply
     end
+    resources "/connections", ConnectionController, only: [:index, :show, :new, :create, :edit, :update, :delete]
+
 
 
   end
