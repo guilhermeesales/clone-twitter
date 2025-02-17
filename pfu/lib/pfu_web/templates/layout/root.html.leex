@@ -20,7 +20,7 @@
               <i class="fa fa-registered"> <%= link "Register", to: Routes.user_path(@conn, :new) %></i> |
             <% else %>
               <i class="fa fa-registered"> <%= link "Fazer postagem", to: Routes.post_path(@conn, :new) %></i> |
-              <a href="/manage/profile"><i class="fa fa-id-card"> <%= @current_user.username %></i></a> |
+              <a href="/posts/my-post/<%= @current_user.id %>"><i class="fa fa-id-card"> <%= @current_user.username %></i></a> |
               <i class="fa fa-power-off"> <%= link "Exit", to: Routes.session_path(@conn, :delete, @current_user), method: "delete" %></i> |
             <% end %>
             <!-- <i class="far fa-sad-cry"> <a href="https://hexdocs.pm/phoenix/overview.html">Docs</a></i> | -->

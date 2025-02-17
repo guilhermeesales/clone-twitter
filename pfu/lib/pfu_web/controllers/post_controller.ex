@@ -94,4 +94,14 @@ defmodule PfuWeb.PostController do
         |> redirect(to: Routes.post_path(conn, :index))
     end
   end
+
+  def profile(conn, %{"id" => id}) do
+    my_posts =
+      from(p in Post, where: p.user_id == ^id, preload: [:user])
+      |> Repo.all()
+
+    IO.inspect(my_posts, label: "Posts do usuário logado")
+    render(conn, "profile.html", posts: my_posts)
+  end
+
 end
