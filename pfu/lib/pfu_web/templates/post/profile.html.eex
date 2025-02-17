@@ -1,12 +1,13 @@
 <h1>Meus posts</h1>
 <%= for post <- @posts do %>
-  <div class="post" id="post-<%= post.id %>">
+  <div class="post" id="post-<%= post.id %>" style="margin-bottom: 20px; background-color: #9ACBD0; border: solid #000957; border-radius: 10px; padding: 20px;">
     <p>
       <strong><%= post.user.name %></strong>: <%= post.content %>
     </p>
     <p>
-      <span id="post-likes-<%= post.id %>"><%= post.likes %> Likes</span>
+      <span id="post-likes-<%= post.id %>"><%= post.likes %>❤️</span>
       <i class="fa fa-heart" aria-hidden="true"></i>
+      <span id="post-replies-<%= post.id %>"><%= post.replies %>🔁</span>
     </p>
     <!-- Botão de exclusão -->
     <button onclick="confirmDelete(<%= post.id %>); return false;">Excluir</button>
