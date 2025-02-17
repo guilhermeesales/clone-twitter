@@ -7,8 +7,9 @@
     <p>
       <span id="post-likes-<%= post.id %>"><%= post.likes %></span>
       <i class="fa fa-heart" aria-hidden="true"></i>
-      <a href="#" onclick="likePost(<%= post.id %>); return false;">Like</a>
-      <a href="#" onclick="alert('Reply'); return false;">Reply</a>
+      <a href="#" onclick="likePost(<%= post.id %>); return false;">❤️</a>
+      <span id="post-replies-<%= post.id %>"><%= post.replies %></span>
+      <a href="#" onclick="replyPost(<%= post.id %>); return false;">🔁</a>
     </p>
   </div>
 <% end %>
@@ -18,6 +19,23 @@
   const csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content")
 
   fetch(`/posts/${postId}/like`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "x-csrf-token": csrfToken
+    }
+  })
+  .then(response => response.json())
+  .then(data => {
+    console.log("Resposta do servidor:", data)
+  })
+  .catch(error => console.error("Erro ao curtir o post:", error))
+}
+
+  function replyPost(postId) {
+  const csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content")
+
+  fetch(`/posts/${postId}/reply`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

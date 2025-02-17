@@ -25,4 +25,12 @@ postChannel.on("post_liked", payload => {
   }
 })
 
+postChannel.on("post_replied", payload => {
+  console.log("Post replied:", payload)
+  let repliesElem = document.getElementById(`post-replies-${payload.post_id}`)
+  if (repliesElem) {
+    repliesElem.innerText = payload.replies
+  }
+})
+
 export default socket

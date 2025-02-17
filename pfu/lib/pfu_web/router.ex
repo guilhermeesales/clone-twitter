@@ -24,6 +24,7 @@ defmodule PfuWeb.Router do
     get "/pessoas/:id", PessoaController, :show
     get "/posts/my-post", PostController, :profile
     post "/posts/:id/like", PostController, :like
+    post "/posts/:id/reply", PostController, :reply
     get "/posts/delete/:id", PostController, :delete
     ########## Com banco #######################
     #get "/users", UserController, :index
@@ -34,6 +35,7 @@ defmodule PfuWeb.Router do
     resources "/sessions", SessionController, only: [:new, :create, :delete]
     resources "/posts", PostController, only: [:index, :show, :new, :create, :edit, :update, :delete] do
       post "/like", PostController, :like, as: :like
+      post "/reply", PostController, :reply, as: :reply
     end
 
 
