@@ -8,15 +8,17 @@ defmodule PfuWeb.UserController do
     users = Repo.all(User)
     render conn, "index.html", users: users
   end
+
   def show(conn, %{"id" => id}) do
     usuario = Repo.get(User, id)
     render conn, "show.html", user: usuario
   end
-  #Explicar proxima aula
+
   def new(conn, _params) do
     changeset = User.changeset(%User{}, %{})
     render(conn, "new.html", changeset: changeset)
   end
+
   def create(conn, %{"user" => user_params}) do
     changeset = User.changeset(%User{}, user_params)
     #nao trata erro:
