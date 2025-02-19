@@ -15,7 +15,7 @@
         <% else %>
           <span class="connected" id="connection-<%= post.user.id %>">
             <span class="connected-text">Vocês já estão conectados</span>
-            <a href="<%= Routes.connection_path(@conn, :desconectar, post.id) %>" class="desconectar">Desconectar</a>
+            <a href="<%= Routes.connection_path(@conn, :desconectar, post.user_id) %>" class="desconectar">Desconectar</a>
           </span>
         <% end %>
       <% end %>

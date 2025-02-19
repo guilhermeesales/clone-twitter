@@ -57,19 +57,13 @@ defmodule PfuWeb.ConnectionController do
     end
   end
 
-
-  def desconectar(conn, %{"id" => post_id}) do
+  def desconectar(conn, %{"id" => id}) do
     current_user = conn.assigns.current_user
 
-    post = Repo.get(Post, post_id) |> Repo.preload(:user)
-    target_user = post.user 
+    # post = Repo.get(Post, post_id) |> Repo.preload(:user)
+    target_user = Repo.get(User, id) 
 
     existing_connection = Repo.get_by(Connections, id_user: current_user.id, id_connected_user: target_user.id)
-
-     posts = 
-      from(p in Post, order_by: [desc: p.likes])
-      |> Repo.all()
-      |> Repo.preload(:user)
 
     case Repo.get(Connections, existing_connection.id) do
       nil ->

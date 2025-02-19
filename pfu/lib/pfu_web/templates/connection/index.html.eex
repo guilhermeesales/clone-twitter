@@ -4,7 +4,7 @@
   <ul style="margin-bottom: 20px; background-color: #9ACBD0; border: solid #000957; border-radius: 10px; padding: 20px;">
     <%= for user <- @users do %>
       <li>
-        <strong><%= user.name %></strong>
+        <strong><%= user.name %> <a href="<%= Routes.connection_path(@conn, :desconectar, user.id) %>" class="desconectar">Desconectar</a></strong>
         <br />
       </li>
     <% end %>
@@ -12,3 +12,12 @@
 <% else %>
   <p>Você não tem conexões ainda.</p>
 <% end %>
+
+
+
+<style>
+  .desconectar {
+    color: red;
+  }
+
+</style>
