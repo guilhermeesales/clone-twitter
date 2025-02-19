@@ -1,7 +1,7 @@
 <h1>Minhas Conexões</h1>
 
 <%= if length(@users) > 0 do %>
-  <ul>
+  <ul style="margin-bottom: 20px; background-color: #9ACBD0; border: solid #000957; border-radius: 10px; padding: 20px;">
     <%= for user <- @users do %>
       <li>
         <strong><%= user.name %></strong>
