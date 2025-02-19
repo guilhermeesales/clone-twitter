@@ -1,6 +1,6 @@
 <h1>TRENDING TOPICS 🔥</h1>
 <%= for post <- @posts do %>
-  <div class="post" id="post-<%= post.id %>">
+  <div class="post" id="post-<%= post.id %>" style="margin-bottom: 20px; background-color: #9ACBD0; border: solid #000957; border-radius: 10px; padding: 20px;">
     <p>
       <strong>
         <%= if post.user.id == @current_user.id do %>
@@ -103,6 +103,7 @@ function replyPost(postId) {
   })
   .catch(error => console.error("Erro ao curtir o post:", error));
 }
+
 
 document.querySelectorAll('.connected').forEach(function(element) {
   element.addEventListener('mouseover', function() {

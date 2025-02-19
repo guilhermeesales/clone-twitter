@@ -1,24 +1,26 @@
-<h1>Lista de Usuários</h1>
-<h4>Quem está longado: <%=@conn.assigns.current_user.name%> </h4>
-<table class="table">
-    <tr>
-        <td>ID</td>
-        <td>First Name</td>
-        <td>Detalhes</td>
-    </tr>
-    <%= for user <- @users do %>
+<div style="background-color: #9ACBD0; border: solid #000957; border-radius: 20px; padding: 20px">
+    <h1>Lista de Usuários</h1>
+    <h4>Quem está logado: <%=@conn.assigns.current_user.name%> </h4>
+    <table class="table">
         <tr>
-            <td><%= user.id %></td>
-            <td><%= first_name(user) %></td>
-            <td>
-                <%= link "VER", to: Routes.user_path(@conn, :show, user.id) %>
-            </td>
-            <td>
-                <%= link "EDITAR", to: Routes.user_path(@conn, :edit, user) %>
-            </td>
-            <td>
-                <%= link "DELETAR", to: Routes.user_path(@conn, :delete, user), method: :delete, data: [confirm: "Remover?"] %>
-            </td>
+            <td>ID</td>
+            <td>First Name</td>
+            <td>Detalhes</td>
         </tr>
-    <% end %>
-</table>
+        <%= for user <- @users do %>
+            <tr style="border: 10 solid #000957;">
+                <td><%= user.id %></td>
+                <td><%= first_name(user) %></td>
+                <td>
+                    <%= link "VER", to: Routes.user_path(@conn, :show, user.id) %>
+                </td>
+                <td>
+                    <%= link "EDITAR", to: Routes.user_path(@conn, :edit, user) %>
+                </td>
+                <td>
+                    <%= link "DELETAR", to: Routes.user_path(@conn, :delete, user), method: :delete, data: [confirm: "Remover?"] %>
+                </td>
+            </tr>
+        <% end %>
+    </table>
+</div>

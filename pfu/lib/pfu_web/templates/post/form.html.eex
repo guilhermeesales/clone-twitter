@@ -5,10 +5,14 @@
     </div>
   <% end %>
 
-  <div class="form-group">
-    <%= textarea f, :content, placeholder: "Escreva sua postagem...", class: "form-control" %>
+ <div style=" background-color: #9ACBD0; border: solid #000957; border-radius: 10px; padding: 20px;">
+    <div class="form-group">
+    <%= textarea f, :content, placeholder: "Escreva sua postagem...", class: "form-control", style: "border: 2px solid black; border-radius: 5px;" %>
     <%= error_tag f, :content %>
-  </div>
+    </div>
 
-  <%= submit "POSTAR", class: "btn btn-primary" %>
+    <%= submit "POSTAR", class: "btn btn-primary" %>
+ </div>
+
+
 <% end %>
